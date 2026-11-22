@@ -5,7 +5,7 @@
     "role": "Chaoen Ho · Architectural Designer",
     "about": "Let's daydream in architecture.\n\nThose colors, textures, and paintings can trigger our senses and emotions that make us feel about things.\nI believe that the essence of architecture is to move people's hearts, and creativity can make us live.",
     "banner": "images/image1.png",
-    "photo": "images/image3.jpg",
+    "photo": "images/0_about.jpg",
     "greet": "Hi! I'm Chaoen.",
     "cv": [
       {
@@ -21,8 +21,12 @@
         "t": "松山高中, 2014 - 2017\n淡江大學 建築系, 2017 - 2021\n成功大學 建研所, 2021 - 2023"
       },
       {
+        "h": "Award",
+        "t": "2021  淡江大學工學院 大禹獎\n2021  成大建築研究所 特優免面試錄取\n2021  臺北市建築師公會學生畢業設計競圖 特別獎\n2024  臺灣建築學會 優良碩士論文獎\n2024  TRAA 學生論文獎 首獎"
+      },
+      {
         "h": "Experience",
-        "t": "2019  郭秋利建築事務所實習生\n2019  馬來西亞台日建築工作營\n2020  葉思建築實習生\n2021  淡江大學工學院 大禹獎\n2021  成大建築研究所 特優免面試錄取\n2021  臺北市建築師公會學生畢業設計競圖 特別獎\n2024  TRAA 學生論文獎 首獎\n2024  臺灣建築學會 優良碩士論文獎"
+        "t": "2019  郭秋利建築事務所實習生\n2019  馬來西亞台日建築工作營\n2020  葉思建築實習生\n2024-至今 九典聯合建築師事務所 設計師 "
       }
     ]
   },
