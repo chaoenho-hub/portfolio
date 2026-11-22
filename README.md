@@ -41,16 +41,15 @@
 ### 方法 A：請 Claude 幫你改（最省事）
 到 claude.ai 的 **設定 → Connectors** 連結你的 GitHub 帳號。之後直接告訴 Claude 要改什麼（例如「新增一個作品」「換掉 Trans-city 的縮圖」），Claude 會直接更新你的 GitHub 專案，網站與 App 約 1 分鐘後自動更新。
 
-### 方法 B：用網站內建的編輯模式（自己改，不用看程式碼）
-1. 用電腦打開 `https://你的帳號.github.io/portfolio/#admin`（網址最後加上 `#admin`）。
-2. 頁首會出現編輯按鈕：**新增專案、編輯簡介、橫幅與配色**；點進作品會有 **編輯**。操作方式和 claude.ai 版本相同。
-3. 改完按 **匯出 content.json**，會下載一個新的 content.json。
-4. 回到 GitHub 專案 → Add file → Upload files，上傳這個 content.json（會取代舊檔）。
-   如果這次有新加圖片，畫面會列出檔名，把那些圖片上傳到 `images` 資料夾。
-5. 按 **Commit changes**，約 1 分鐘後網站更新。
+### 方法 B：用網站內建的編輯模式（自己改，按一下就發布）
+1. 打開 `https://chaoenho-hub.github.io/portfolio/#admin`（網址最後加上 `#admin`）。
+2. **第一次使用**：按「GitHub 設定」，照畫面說明到 GitHub 產生一組存取金鑰（只開放 `portfolio` 專案、Contents 設為 Read and write），貼上後儲存。金鑰只存在這台裝置的瀏覽器，換裝置要再設定一次。
+3. 用 **新增專案、編輯簡介、橫幅與配色**，或點進作品按 **編輯** 修改內容與圖片。
+4. 按 **發布到 GitHub**。文字與新圖片會一次上傳，約 1–2 分鐘後網站與 App 自動更新。
 
-> 編輯模式的修改在匯出並上傳到 GitHub 之前，只存在你這台裝置的瀏覽器裡，別人看不到。
-> 其他人就算打開 `#admin` 也只能在自己的瀏覽器試改，無法改動你的網站。
+> 發布之前，修改只存在你這台裝置的瀏覽器裡，別人看不到；新加的圖片請在關閉頁面前發布。
+> 其他人就算打開 `#admin`，沒有你的金鑰也無法改動網站。
+> 不想用金鑰的話，也可以按「匯出 content.json」，再手動上傳到 GitHub 取代舊檔（新圖片放進 `images` 資料夾）。
 
 ### 方法 C：直接改 content.json
 在 GitHub 專案點 `content.json` → 右上鉛筆圖示，直接修改文字後按 **Commit changes**。

@@ -108,7 +108,9 @@ nav .lk:hover,nav .lk[aria-expanded="true"]{color:var(--accent)}
       <button class="btn solid" id="add">＋ 新增專案</button>
       <button class="btn" id="editinfo">編輯簡介</button>
       <button class="btn" id="editlook">橫幅與配色</button>
-      <button class="btn solid" id="export">匯出 content.json</button>
+      <button class="btn solid" id="publish">發布到 GitHub</button>
+      <button class="btn" id="ghset">GitHub 設定</button>
+      <button class="btn" id="export">匯出 content.json</button>
       <button class="btn" id="discard">捨棄草稿</button>
       <span class="note" id="dirty" style="align-self:center"></span>
     </div>
@@ -280,6 +282,9 @@ document.addEventListener('click',async e=>{
   if(b){
     const a=b.dataset.a;
     if(a==='close')hide();
+    else if(a==='savegh')saveGH();
+    else if(a==='ghset2')openGH();
+    else if(a==='rmgh'){try{const c=ghCfg();c.token='';localStorage.setItem(GHK,JSON.stringify(c))}catch(err){}openGH('已移除金鑰。')}
     else if(a==='nobanner'){ldraft.banner='';drawLook()}
     else if(a==='looksreset'){Object.assign(ldraft,DEF);applyTheme(ldraft);drawLook('已恢復預設，按儲存後生效。')}
     else if(a==='savelook'){
@@ -304,6 +309,8 @@ document.addEventListener('click',async e=>{
   if(e.target.id==='editinfo')openInfo();
   if(e.target.id==='editlook')openLook();
   if(e.target.id==='export')exportJson();
+  if(e.target.id==='publish')publishGH();
+  if(e.target.id==='ghset')openGH();
   if(e.target.id==='discard'){if(e.target.dataset.sure){store={projects:{},info:null,theme:null};saveDraft();emit();e.target.textContent='捨棄草稿';delete e.target.dataset.sure}else{e.target.dataset.sure='1';e.target.textContent='確定捨棄？'}}
 });
 document.addEventListener('change',async e=>{
@@ -340,10 +347,82 @@ const localDb={
     async delete(){delete store.projects[id];saveDraft();emit()}}}}},
   doc(path){return{async set(d){if(path==='site/info')store.info=d;else if(path==='site/theme')store.theme=d;saveDraft();emit()}}}
 };
-const localAssets={async upload(f){const name='images/'+f.name.replace(/[^\w.\-]+/g,'_');BLOBS[name]=URL.createObjectURL(f);return{id:name}}};
-function exportJson(){
+const FILES={};
+const localAssets={async upload(f){const base=f.name.replace(/[^\w.\-]+/g,'_');const name='images/'+Date.now().toString(36)+'-'+base;BLOBS[name]=URL.createObjectURL(f);FILES[name]=f;return{id:name}}};
+function buildContent(){
   const strip=p=>{const o=Object.assign({},p);delete o.deleted;return o};
-  const out={_說明:CONTENT._說明,info:Object.assign({},info),theme:theme,projects:cur().map(strip)};
+  return {_說明:CONTENT._說明,info:Object.assign({},info),theme:theme,projects:cur().map(strip)};
+}
+function usedImages(c){const s=new Set();c.projects.forEach(p=>{(p.images||[]).forEach(i=>s.add(i));if(p.thumb)s.add(p.thumb)});['banner','photo'].forEach(k=>c.info[k]&&s.add(c.info[k]));return s}
+// ---- GitHub 發布 ----
+const GHK='chaoen-portfolio-gh-v1';
+function ghCfg(){let c={};try{c=JSON.parse(localStorage.getItem(GHK)||'{}')}catch(e){}
+  const seg=location.pathname.split('/').filter(Boolean)[0]||'';
+  const host=location.hostname.endsWith('.github.io')?location.hostname.replace('.github.io',''):'';
+  return Object.assign({owner:host||'chaoenho-hub',repo:(host&&seg&&seg!=='index.html')?seg:(host?host+'.github.io':'portfolio'),branch:'main',token:''},c)}
+function openGH(msg){
+  const c=ghCfg();
+  show('<div class="top"><button class="btn" data-a="close">取消</button><span><button class="btn solid" data-a="savegh">儲存設定</button></span></div>'+
+  '<h2 class="serif" style="margin:0 0 8px">GitHub 設定</h2><div class="note" id="ghmsg">'+esc(msg||'')+'</div>'+
+  '<div class="desc" style="margin:12px 0">第一次使用需要一組「存取金鑰」（只需設定一次，只存在這台裝置的瀏覽器）：\n'+
+  '1. 打開 github.com/settings/personal-access-tokens/new\n'+
+  '2. Token name 隨意填（例如 portfolio），Expiration 可選 1 年或 No expiration\n'+
+  '3. Repository access 選 Only select repositories → 勾選 '+esc(c.repo)+'\n'+
+  '4. Permissions → Repository permissions → Contents 選 Read and write\n'+
+  '5. 按 Generate token，複製產生的金鑰（github_pat_ 開頭），貼到下方\n\n'+
+  '請不要把金鑰貼到聊天或傳給任何人。</div>'+
+  '<div class="row"><div><label>GitHub 帳號</label><input id="gh-owner" value="'+esc(c.owner)+'"></div><div><label>專案名稱</label><input id="gh-repo" value="'+esc(c.repo)+'"></div></div>'+
+  '<label>存取金鑰</label><input id="gh-token" type="password" autocomplete="off" value="'+esc(c.token)+'" placeholder="github_pat_…">'+
+  (c.token?'<p><button class="btn danger" data-a="rmgh">從這台裝置移除金鑰</button></p>':''));
+}
+function saveGH(){
+  const c={owner:$('#gh-owner').value.trim(),repo:$('#gh-repo').value.trim(),branch:'main',token:$('#gh-token').value.trim()};
+  try{localStorage.setItem(GHK,JSON.stringify(c))}catch(e){$('#ghmsg').textContent='無法儲存在這台裝置';return}
+  hide();
+}
+async function gh(c,method,path,body){
+  const r=await fetch('https://api.github.com/repos/'+c.owner+'/'+c.repo+path,{method,headers:{'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},body:body?JSON.stringify(body):undefined});
+  if(!r.ok){let m='';try{m=(await r.json()).message}catch(e){}
+    if(r.status===401)throw new Error('金鑰無效或已過期，請到「GitHub 設定」重新貼上');
+    if(r.status===403||r.status===404)throw new Error('沒有寫入權限：請確認金鑰有勾選這個專案，且 Contents 為 Read and write（'+m+'）');
+    throw new Error(r.status+' '+m)}
+  return r.json();
+}
+const b64file=f=>new Promise((ok,no)=>{const fr=new FileReader();fr.onload=()=>ok(String(fr.result).split(',')[1]);fr.onerror=()=>no(fr.error);fr.readAsDataURL(f)});
+function b64text(t){const u=new TextEncoder().encode(t);let s='';for(let i=0;i<u.length;i+=32768)s+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(s)}
+let publishing=false;
+async function publishGH(){
+  if(publishing)return;
+  const c=ghCfg();if(!c.token){openGH('請先完成設定，再按「發布到 GitHub」。');return}
+  if(!dirty()){show('<div class="top"><button class="btn" data-a="close">好</button></div><h2 class="serif">目前沒有需要發布的修改</h2>');return}
+  publishing=true;
+  const log=t=>{const el=$('#pub');if(el)el.textContent+=t+'\n'};
+  show('<div class="top"><span></span></div><h2 class="serif" style="margin:0 0 8px">發布中…</h2><div class="desc" id="pub"></div>');
+  try{
+    const out=buildContent();const used=usedImages(out);
+    const imgs=Object.keys(FILES).filter(k=>used.has(k));
+    log('連線到 GitHub…');
+    const ref=await gh(c,'GET','/git/ref/heads/'+c.branch);
+    const head=ref.object.sha;const commit=await gh(c,'GET','/git/commits/'+head);
+    const tree=[];
+    for(let i=0;i<imgs.length;i++){log('上傳圖片 '+(i+1)+' / '+imgs.length+'：'+imgs[i].replace('images/',''));
+      const blob=await gh(c,'POST','/git/blobs',{content:await b64file(FILES[imgs[i]]),encoding:'base64'});
+      tree.push({path:imgs[i],mode:'100644',type:'blob',sha:blob.sha})}
+    log('上傳內容檔 content.json…');
+    const cj=await gh(c,'POST','/git/blobs',{content:b64text(JSON.stringify(out,null,2)),encoding:'base64'});
+    tree.push({path:'content.json',mode:'100644',type:'blob',sha:cj.sha});
+    const t=await gh(c,'POST','/git/trees',{base_tree:commit.tree.sha,tree});
+    const nc=await gh(c,'POST','/git/commits',{message:'從編輯模式更新作品集內容',tree:t.sha,parents:[head]});
+    await gh(c,'PATCH','/git/refs/heads/'+c.branch,{sha:nc.sha});
+    CONTENT=out;INFO=out.info||{};SAMPLES=out.projects;BUILT=new Set(SAMPLES.map(p=>p.id));
+    store={projects:{},info:null,theme:null};saveDraft();imgs.forEach(k=>delete FILES[k]);emit();
+    show('<div class="top"><button class="btn" data-a="close">完成</button></div><h2 class="serif" style="margin:0 0 8px">已發布 ✓</h2><div class="desc">修改已上傳到 GitHub。約 1–2 分鐘後，網站與手機 App 會自動更新（App 可能需要關掉重開一次）。</div>');
+  }catch(e){
+    show('<div class="top"><button class="btn" data-a="close">關閉</button><span><button class="btn" data-a="ghset2">GitHub 設定</button></span></div><h2 class="serif" style="margin:0 0 8px">發布失敗</h2><div class="desc">'+esc(e&&e.message||e)+'\n\n你的修改仍保留在這台裝置上，可以修正後再按一次「發布到 GitHub」。</div>');
+  }finally{publishing=false}
+}
+function exportJson(){
+  const out=buildContent();
   const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='content.json';document.body.appendChild(a);a.click();a.remove();
   const imgs=new Set();cur().forEach(p=>{(p.images||[]).forEach(i=>imgs.add(i));if(p.thumb)imgs.add(p.thumb)});['banner','photo'].forEach(k=>info[k]&&imgs.add(info[k]));
@@ -362,6 +441,7 @@ function exportJson(){
   emit();
 })();
 addEventListener('hashchange',()=>location.reload());
+addEventListener('beforeunload',e=>{if(canEdit&&Object.keys(FILES).length&&dirty()){e.preventDefault();e.returnValue=''}});
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>
 </body>
