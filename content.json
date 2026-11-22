@@ -1,0 +1,264 @@
+{
+  "_說明": "這是作品集 App 的內容檔。修改後存檔，網站即更新。圖片請放在 images 資料夾，路徑寫成 images/檔名。",
+  "info": {
+    "name": "賀昭恩",
+    "role": "Chaoen Ho · Architectural Designer",
+    "about": "Let's daydream in architecture.\n\nThose colors, textures, and paintings can trigger our senses and emotions that make us feel about things.\nI believe that the essence of architecture is to move people's hearts, and creativity can make us live.",
+    "banner": "images/image1.png",
+    "photo": "images/image3.jpg",
+    "greet": "Hi! I'm Chaoen.",
+    "cv": [
+      {
+        "h": "Personal Info",
+        "t": "賀昭恩\n1997 - 10 - 27\nTaipei, Taiwan"
+      },
+      {
+        "h": "Skills",
+        "t": "AutoCAD / Revit / Sketchup\nRhino 3D / Photoshop / Illustrator\nInDesign / Enscape / Lumion"
+      },
+      {
+        "h": "Education",
+        "t": "松山高中, 2014 - 2017\n淡江大學 建築系, 2017 - 2021\n成功大學 建研所, 2021 - 2023"
+      },
+      {
+        "h": "Experience",
+        "t": "2019  郭秋利建築事務所實習生\n2019  馬來西亞台日建築工作營\n2020  葉思建築實習生\n2021  淡江大學工學院 大禹獎\n2021  成大建築研究所 特優免面試錄取\n2021  臺北市建築師公會學生畢業設計競圖 特別獎\n2024  TRAA 學生論文獎 首獎\n2024  臺灣建築學會 優良碩士論文獎"
+      }
+    ]
+  },
+  "theme": {
+    "bg": "#d6d6d6",
+    "fg": "#1b1b1a",
+    "accent": "#b3471d"
+  },
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Trans-city",
+      "sub": "自駕城市主義：未來城市空間組構",
+      "year": "2023",
+      "cat": "碩士論文",
+      "loc": "",
+      "award": "2024 TRAA 學生論文獎 首獎\n2024 臺灣建築學會 優良碩士論文獎",
+      "credits": "INSTRUCTOR / 鄭泰昇、宋立文\nKEY WORDS / Autonomous Vehicles, Future City, New Form Space",
+      "desc": "自駕城市主義是對於自駕車興起後的一種新型態城市設計理念，探討因自駕車而引發新的「價值的創造」：當自駕車釋放了我們雙手，同時也釋放了空間與時間。一座城市的紋理是由交通系統演變而來的，從過去馬車蜿蜒路徑形成的前工業城市到現代車道串聯而成的建築與道路設計，土地的使用方式依循人們的移動模式而有所改變。自汽車誕生至今一個多世紀以來，人們對於汽車的依賴，連帶也影響都市基礎建設的規劃。我們日常可見的道路多是以汽車導向為主，因此人們能夠安全活動的範圍被大幅度的限縮了，而汽車經濟帶來的影響如交通堵塞、過多閒置的私家車、能源消耗與碳排放量等，在自駕車誕生之後，我們似乎看見了新的曙光，當人們不再需要駕駛汽車時，自駕車成為一種能與多方連結的「移動載體」，其改變的不僅是人們的生活作息和交通模式，還會影響都市規劃與建築環境的設計思維。當汽車這個概念已逐漸從強調實用性的交通工具變成結合人們日常生活的智慧移動載體，我們對於城市設計的想法將回歸以人為本的城市空間設計。如果說建築是能夠裝載人與事件的固定載體，自駕車則是能夠靈活變化的移動載體，若一同構思其在空間中相互連結的可能性，則能打破實體空間的限制，形成涵蓋群體與時間向度的新形態空間，透過自駕車的互聯性將事件發生的觸及範圍擴大到街道與城市。自駕車發展是未來的趨勢，如今國際上多是討論自駕車本身技術的突破與基礎設施的環境建置，少有建築人提出未來城市的願景想像。因此本研究統整自駕車未來發展的案例資料，分析因自駕車而產生的空間情境，歸納自駕車對都市規劃及建築空間發展所帶來之影響，導入自駕城市主義，打開未來無限想像。\n\nTrans-city is a new type of urban design concept after the rise of autonomous vehicles. It explores the interaction among people, vehicles, buildings and cities. The emergence of autonomous vehicles will trigger a new \"creation of value\": when autonomous vehicles free our hands, they also free up space and time. Observing the past and present urban changes in history, we can find that the shaping of urban texture is closely related to the transportation system used by residents at that time. In terms of infrastructure, there are roads due to the appearance of automobiles, land bridges due to the needs of shipping, and airports due to the invention of airplanes. In terms of urban form, transportation is an important part of urban operation. The direction of urban development varies based on residents' attitudes towards the land. When the concept of cars has gradually changed from a practical means of transportation to a smart object that integrates people's daily life, our ideas on urban design can be more \"humanity-oriented\". Buildings are fixed vehicles that can carry people and events, so autonomous cars are mobile vehicles that can change flexibly. If we conceive together the possibility of their interconnection in space, we can break the limitation of physical space.\nA new form space covering the dimensions of group and time will be born. Through the interconnection of autonomous vehicles, the scope of the event occurrence is expanded to streets and cities.",
+      "images": [
+        "images/image6.jpg",
+        "images/image7.jpg",
+        "images/image8.png",
+        "images/image9.png",
+        "images/image10.png",
+        "images/image11.png",
+        "images/image12.png",
+        "images/image13.png"
+      ],
+      "thumb": "images/image5.png",
+      "video": "",
+      "order": 100
+    },
+    {
+      "id": "p2",
+      "title": "PUzzleUP: Herbal Urban Factory",
+      "sub": "拼圖圖拼：青草城市工廠",
+      "year": "2021",
+      "cat": "歷史文化空間",
+      "loc": "台北市萬華區康定路278巷",
+      "award": "2021 臺北市建築師公會學生畢業設計競圖 特別獎",
+      "credits": "INSTRUCTOR / 平原英樹\nPROGRAM / 歷史文化空間\nSITE / 台北市萬華區康定路278巷",
+      "desc": "拼圖圖拼，城市拼圖遊戲。\n城市中，能夠發現許多被使用過的痕跡、被定義過的街巷、被轉譯過的歷史，以及因為不合時宜而被二次詮釋的功能建築。時間遞進，曾經的故事在街巷中留下線索與碎片，難以察覺卻十分迷人。\n\n在萬華區，即曾經的艋舺，城市的輝煌不再、記憶與真實形成斷片，像是拼圖散落一地，導致許多空缺與荒廢之地穿插在常民的生活空間。\n\n青草巷，在過去被人們認為是救命街。青草氣味瀰漫了整個歷史故事，它像是一幅畫中的關鍵拼圖，串聯了整起故事，然而如今還存在的青草茶店成為了夕陽產業，只提供老人需求與少數的觀光用途。因此我嘗試尋找散落於萬華的歷史記憶，龍山寺、隘門、茶室、電視店等，利用新舊交疊重新連結與青草的故事，在城市中建立一個生產回憶的工廠。\n\n我紀錄萬華六種樣態的記憶，發展出青草加工廠、堡壘書店、記憶遊園、無名茶室、萬花筒電視館的五種建築型態。在城市中置入L、M、S的拼圖尺度，建構一場城市拼圖遊戲，讓人們能夠在遊戲中窺探這座城市的氣質，發覺城市新的價值、拼湊出屬於萬華的記憶輪廓。\n\nPUzzleUP, urban puzzle game.\nIn the city, we can find many used traces, defined streets and lanes, translated history, and functional buildings that have been second interpretation because out of date. As time progresses, the past stories leave clues and fragments in the streets, which are hard to detect but very fascinating. In Wanhua District, the former Monga, the splendor of the city is no longer, and the memory and reality become broken like puzzle scattered around, resulting in many vacancies and ruins are interspersed in the living spaces of local people. Herb Alley was considered a life-saving street in the past. The smell of herb has spread throughout the entire historical story. It is like a key puzzle in a painting, connecting the whole story. However, the herb tea shops that still exist today have become the sunset industry, serving only the needs of the elderly and a few tourist uses. Therefore, I tried to find the historical memories scattered in Wanhua, such as Longshan Temple, Aimen, teahouses, TV shops, etc., using the overlap of the old and the new to reconnect the stories with herb, and build a factory that produces memories in the city. I recorded six types of memories of Wanhua, and developed five architectural types including the herb processing factory, the fort-bookstore, the memo-playground, the anony-tea room, and the Kaleido-TV house. Put the puzzle scales of L, M, S in the city to construct an urban puzzle game, so that people can explore the temperament of the city in the game, discover the new value of the city, and piece together the memory outline belonging to Wanhua.",
+      "images": [
+        "images/image15.jpg",
+        "images/image16.jpg",
+        "images/image17.jpg"
+      ],
+      "thumb": "images/icon14.png",
+      "video": "https://www.youtube.com/watch?v=Sc7cnGOhSj4",
+      "order": 99
+    },
+    {
+      "id": "p3",
+      "title": "Daily reverie in the alley",
+      "sub": "巷弄裡的日常白日夢",
+      "year": "2020",
+      "cat": "社區活動空間",
+      "loc": "高雄安樂樓",
+      "award": "",
+      "credits": "INSTRUCTOR / 平原英樹\nPROGRAM / 社區活動空間\nSITE / 高雄安樂樓",
+      "desc": "白日夢與作夢不同的是，它是建立在真實之上有目的性的追逐快樂。\n\nThe concept originated from a song \"Runaway mama\", which tells a young girl who lost her dreams because she has become a mother and can only do her housework and live a boring life. So I wanted to design a space that connects the people of the community with daily dreams. Daydreaming differs from dreaming in that it is a purposeful pursuit of happiness based on reality.",
+      "images": [
+        "images/image19.jpg",
+        "images/image20.jpg",
+        "images/image21.jpg"
+      ],
+      "thumb": "images/icon18.png",
+      "video": "",
+      "order": 98
+    },
+    {
+      "id": "p4",
+      "title": "Visual Mediations: Regional Art Museum",
+      "sub": "視覺中介：地區美術館",
+      "year": "2019",
+      "cat": "美術館",
+      "loc": "淡水國小",
+      "award": "",
+      "credits": "INSTRUCTOR / 顏亮平\nPROGRAM / 美術館\nSITE / 淡水國小",
+      "desc": "我將美術館看作是視覺中介，一個傳遞者的角色，乘載著不同人對於淡水這塊地域的看法、以及對於藝術的想像。\n我著重在基地分析與美術館定位之探討。由大尺度至小尺度的地景觀察，找尋基地對於建築本體的影響。\n\nI regard the museum as a visual mediation, a role as a carrier, carrying different people's views on the area of Tamsui and imagination of art. Therefore, I focus on the analysis of the site and how the museum is positioned. Observe the landscape from large scale to small scale to find the influence of the site on the building.",
+      "images": [
+        "images/image23.jpg",
+        "images/image24.jpg",
+        "images/image25.jpg"
+      ],
+      "thumb": "images/icon22.png",
+      "video": "",
+      "order": 97
+    },
+    {
+      "id": "p5",
+      "title": "Silhouette theater in Taipei",
+      "sub": "台北城中的剪影影院",
+      "year": "2020",
+      "cat": "放映室",
+      "loc": "台北信義區",
+      "award": "",
+      "credits": "INSTRUCTOR / 平原英樹\nPROGRAM / 放映室\nSITE / 台北信義區",
+      "desc": "台北的剪影（Silhouette）會是甚麼？\n建築視為一個濾鏡，城市將被反射成為一幅畫，一部故事或一部電影。\n\nWhat is the silhouette of Taipei? I think it is a story about the life of people and cities. But only when you notice this thing, you can feel it. Therefore, my design focuses on creating story-telling architecture to make people feel the little things that happened between you and us and the city. Under the influence of architectural filters, everything is reflected and becomes a painting, a story or a movie.",
+      "images": [
+        "images/image27.jpg",
+        "images/image28.jpg",
+        "images/image29.jpg"
+      ],
+      "thumb": "images/icon26.png",
+      "video": "",
+      "order": 96
+    },
+    {
+      "id": "p6",
+      "title": "Iridescent: Time Bookstore",
+      "sub": "七彩：時間書店",
+      "year": "2020",
+      "cat": "書店",
+      "loc": "淡水",
+      "award": "",
+      "credits": "INSTRUCTOR / 平原英樹\nPROGRAM / 書店\nSITE / 淡水",
+      "desc": "彩色光學如何應用在建築上？\n當書店成為一個能觸發回憶與思考的空間，不同色彩將是你人生的記號。有著外表年老內心像小孩的人、也有十年回望人生經歷重疊的人，他們會如何在有色彩系統的建築下相互影響與碰撞呢？\n\nThis is a design from the study of how color optics is used in architecture to the final association of color with the life stage and bookstore. When the bookstore becomes a space that can trigger memories and thoughts, different colors will be a sign of your life. There are many different kinds of people. How do people influence and get involved in each other in architecture with color systems?",
+      "images": [
+        "images/image31.jpg",
+        "images/image32.jpg",
+        "images/image33.jpg"
+      ],
+      "thumb": "images/icon30.png",
+      "video": "",
+      "order": 95
+    },
+    {
+      "id": "p7",
+      "title": "21st century Co-housing",
+      "sub": "重疊：21世紀共享住宅型態研究",
+      "year": "2019",
+      "cat": "社會住宅",
+      "loc": "北投中心新村",
+      "award": "",
+      "credits": "INSTRUCTOR / 林珍瑩\nPROGRAM / 社會住宅\nSITE / 北投中心新村",
+      "desc": "當21世紀末，台灣多數人年齡藉在65歲，平均壽命140歲，常態的生活習慣將發生劇烈的改變。憂鬱症、孤獨死成為比起癌症更讓人頭痛的問題，社會住宅在21世紀成為了大人俱樂部的代稱，這裡凝聚了來自不同地方、血緣的人們，這裡是找尋夥伴們相聚時的快樂與心理的依存性的所在地。\n\nAt the end of the 21st century, most people in Taiwan are about 65 years of age and have an average life expectancy of 140 years. The normal lifestyle will undergo drastic changes. Depression and loneliness have become more headaches than cancer. Social housing has become the pronoun of adult clubs. It gathers people from different places and blood ties. Here is the place to find the happiness and psychological dependency when friends meet.",
+      "images": [
+        "images/image35.jpg",
+        "images/image36.jpg",
+        "images/image37.jpg"
+      ],
+      "thumb": "images/icon34.png",
+      "video": "",
+      "order": 94
+    },
+    {
+      "id": "p8",
+      "title": "Episode: Comic House",
+      "sub": "片段：漫畫屋",
+      "year": "2020",
+      "cat": "展示屋",
+      "loc": "淡水",
+      "award": "",
+      "credits": "INSTRUCTOR / 平原英樹\nPROGRAM / 展示屋\nSITE / 淡水",
+      "desc": "我們要如何在建築中感受到戲劇般的情節片段？\n也許就像走進漫畫書裡一樣瀏覽有趣的漫畫分鏡。但與漫畫書不同的是，建築是動態的。因為建築涵構了自然環境和基地的特色，與外部環境是相互影響並且不斷變化的。\n在漫畫屋中，空間被強烈切割並創造不同場景，在每個小空間中能夠純粹的欣賞單一的事物。\n\nHow can we feel Episode in architecture?\nMaybe it's like walking into a comic book and enjoying the funny scenes. But unlike comic books, architecture is dynamic. Because the architecture contains the natural environment and the characteristics of the site. The building and external environment affect each other. In the comic house, the space is strongly cut and different scenes are created. In each small space, you can appreciate a single thing purely.",
+      "images": [
+        "images/image39.jpg",
+        "images/image40.jpg",
+        "images/image41.jpg"
+      ],
+      "thumb": "images/icon38.png",
+      "video": "",
+      "order": 93
+    },
+    {
+      "id": "p9",
+      "title": "Time Camping",
+      "sub": "時間營場：澎湖赤崁村",
+      "year": "2021",
+      "cat": "多用途營地規劃",
+      "loc": "澎湖赤崁村",
+      "award": "",
+      "credits": "INSTRUCTOR / 鄭泰昇、劉舜仁\nPROGRAM / 多用途營地規劃\nSITE / 澎湖赤崁村",
+      "desc": "《澎湖廳志》〈風俗卷〉寫道：「築牆用咾咕石，皆掘於內海波間。社外附近瞍園，一用咾咕石周圍堆砌短垣，謂之宅者。澎人多圍宅種菜。必有井而後可築屋。」菜宅常常伴隨著蘆竹、銀合歡等，並不是種了菜就沒事，還要拔草。給它生，再來拔，形成自然與社區的常態週期。\n\n1. 以時間軸為概念，思考建築的進場與退場\n2. 設計能被閱讀時間性的建築，好似時間本身也在此露營、暫時停滯\n3. 外來者－以海洋學舍季，吸引學生與遊客認識澎湖島，深度旅遊，以教育為目的種下認同感的因子\n4. 居民－青年人口外移；現在居民多為高齡者，第一代人與第二代人所認知的白沙鄉老家已不同，如何讓青年對於這裡有歸屬感，再次詮釋澎湖的海洋與在地文化。",
+      "images": [
+        "images/image43.jpg",
+        "images/image44.jpg"
+      ],
+      "thumb": "images/icon42.png",
+      "video": "",
+      "order": 92
+    },
+    {
+      "id": "p10",
+      "title": "Happy Mourning: Spirit Bone Church",
+      "sub": "快樂哀愁：社區靈骨堂",
+      "year": "2020",
+      "cat": "靈骨堂",
+      "loc": "台北善導寺",
+      "award": "",
+      "credits": "INSTRUCTOR / 游瑛樟\nPROGRAM / 靈骨堂\nSITE / 台北善導寺",
+      "desc": "思念已故親人的情感是神聖且平凡的。我想反轉舊時靈骨堂的意象，使它成為社區中活動的一部份，創造一個能夠在此緬懷先人且舒適的場域。\n\nThe old-style spirit bone church won't appear in the community, its image is often sacred, solemn, inviolable, and not close to people, but the emotion of missing the loved ones of the deceased is often and ordinary, so I want to reverse the spirit bone hall imagery and make it a part of the activities in the community, creating a comfortable field where you can remember your ancestors.",
+      "images": [
+        "images/image46.jpg",
+        "images/image47.jpg",
+        "images/image48.jpg"
+      ],
+      "thumb": "images/icon45.png",
+      "video": "",
+      "order": 91
+    },
+    {
+      "id": "p11",
+      "title": "Bamboo Pavilion",
+      "sub": "竹構造實作",
+      "year": "2016",
+      "cat": "Pavilion",
+      "loc": "淡水",
+      "award": "",
+      "credits": "INSTRUCTOR / 許偉揚\nPROGRAM / Pavilion\nTEAM / 林家慶、李祐瑄、莊皓鈞、李俊旻、賀昭恩、陳威全、周宗賢\nSITE / 淡水",
+      "desc": "「昊頂，蒼穹」\n是人們仰望星空的驛站，\n是一種想像，\n一種，\n在慌亂世界中的依循。\n\n\"Sky\"\nIt's a station where people\nlook at the starry night,\nIs an imagination,\nIs one kind of,\nFollow in a panic world.",
+      "images": [
+        "images/image50.jpg"
+      ],
+      "thumb": "images/icon49.png",
+      "video": "",
+      "order": 90
+    },
+    {
+      "id": "p12",
+      "title": "RE-Inhabit",
+      "sub": "再，居住 · 再び住まう",
+      "year": "2019",
+      "cat": "Old house reconstruction",
+      "loc": "馬來西亞",
+      "award": "台日國際交流建築工作營 馬來西亞眷村研究計畫",
+      "credits": "INSTRUCTOR / Satoko Shinohara\nPROGRAM / Old house reconstruction\nTEAM / Goo Wei Ren, Alyssa Lee, Soo Yin (UCSI) | Liu Jiayu, Chen Chieh-yu, Ho Chao-en (TKU) | Ayao Iwaki, Nao Kaneko (JWU) | Konosuke Shinomiya (Saga Univ.)\nSITE / 馬來西亞",
+      "desc": "New Salak South village, a home of many that filled with rich of historical and cultural atmosphere. With the change of course in its history, the architecture has undergone several changes, enhancing the landscape of New Salak South. As time passes, generations start to dwell into the advancement of technology and transportation. Most of the younger generations move out of the village to seek for work and living, thus the demographic of this village is dominated by the elderlies and children. It is peaceful and harmony but sooner or later, this wonderful village might deteriorate with what is left.",
+      "images": [
+        "images/image52.jpg"
+      ],
+      "thumb": "images/icon51.png",
+      "video": "",
+      "order": 89
+    }
+  ]
+}

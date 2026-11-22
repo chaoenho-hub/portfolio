@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#d6d6d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="賀昭恩">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>賀昭恩 | 建築作品集</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Inter:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#f4f2ee;--fg:#1b1b1a;--mute:#76736d;--line:#d8d4cc;--card:#eae7e1;--accent:#b3471d;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe7;--mute:#9a978f;--line:#33322f;--card:#1f1e1c;--accent:#e0794d;--on:#151514}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe7;--mute:#9a978f;--line:#33322f;--card:#1f1e1c;--accent:#e0794d;--on:#151514}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.7 Inter,"Noto Sans TC",system-ui,sans-serif}
+.serif{font-family:"Noto Serif TC",Georgia,serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{padding:36px 0 40px;border-bottom:1px solid var(--line)}
+.banner{width:auto;max-width:100%;display:block;margin:0 auto 34px;border-radius:2px}
+.eyebrow{margin-bottom:12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+h1{font:600 clamp(34px,7vw,64px)/1.1 "Noto Serif TC",Georgia,serif;margin:10px 0 18px;letter-spacing:.04em}
+.about{max-width:680px;color:var(--mute);white-space:pre-line;margin:0;font-style:italic}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);padding:8px 16px;font-size:14px;border-radius:2px;text-decoration:none;display:inline-block}
+.btn.solid{background:var(--fg);color:var(--on)}
+.btn.danger{border-color:var(--accent);color:var(--accent)}
+.btn:disabled{opacity:.5}
+.profile{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:36px;padding:44px 0;border-bottom:1px solid var(--line)}
+.profile img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--card)}
+.profile h2{font:600 26px/1.3 "Noto Serif TC",Georgia,serif;margin:0 0 18px}
+.cv{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 30px}
+.cv h4{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0 0 6px;font-weight:500}
+.cv p{margin:0;white-space:pre-line;font-size:14.5px;line-height:1.8}
+@media(max-width:700px){.profile{grid-template-columns:1fr}.profile img{max-width:260px}}
+.sec{padding:40px 0 0;display:flex;justify-content:space-between;align-items:baseline}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 22px;padding:24px 0 80px}
+.card{cursor:pointer}
+.thumb{aspect-ratio:1/1;background:var(--card);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.04)}
+.card h3{font:600 18px/1.4 "Noto Serif TC",Georgia,serif;margin:12px 0 0}
+.card .sub{font-size:14px;margin:0 0 2px}
+.meta{font-size:13px;color:var(--mute)}
+.award{font-size:13px;color:var(--accent);white-space:pre-line}
+.empty{padding:70px 0;color:var(--mute);text-align:center;grid-column:1/-1}
+.ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--mute);font-size:13px}
+.ov{position:fixed;inset:0;background:var(--bg);overflow:auto;z-index:20;padding:max(18px,env(safe-area-inset-top,0px)) 0 max(40px,env(safe-area-inset-bottom,0px))}
+.ov .top{display:flex;justify-content:space-between;gap:10px;margin-bottom:22px}
+.detail h2{font:600 clamp(26px,5vw,44px)/1.2 "Noto Serif TC",Georgia,serif;margin:6px 0 4px}
+.detail .sub{font:400 clamp(18px,3vw,24px)/1.4 "Noto Serif TC",Georgia,serif;margin:0 0 10px}
+.credits{white-space:pre-line;font-size:13.5px;color:var(--mute);margin:18px 0 0;letter-spacing:.02em}
+.desc{white-space:pre-line;max-width:760px;margin:20px 0 28px}
+.gal img{width:auto;max-width:100%;height:auto;display:block;margin:0 auto 18px;background:var(--card)}
+label{display:block;font-size:13px;color:var(--mute);margin:16px 0 4px}
+input,textarea{width:100%;font:inherit;color:var(--fg);background:transparent;border:1px solid var(--line);padding:10px;border-radius:2px}
+textarea{min-height:150px;resize:vertical}
+textarea.s{min-height:80px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.th{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:8px}
+.th div{position:relative;aspect-ratio:1;background:var(--card)}
+.th img{width:100%;height:100%;object-fit:cover}
+.th span{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;background:#000a;padding:0 4px}
+.th button{background:none;border:0;color:#fff;padding:2px 6px;font-size:14px}
+.note{font-size:13px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--mute)}
+nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:flex-start;gap:4px;flex-wrap:wrap;min-height:58px}
+nav .lk:first-child{padding-left:0}
+nav .brand{font:600 18px/1 "Noto Serif TC",Georgia,serif;margin-right:auto;background:none;border:0;color:var(--fg);padding:10px 0}
+nav .lk{background:none;border:0;color:var(--fg);font-size:14px;padding:12px 12px;letter-spacing:.06em}
+nav .lk:hover,nav .lk[aria-expanded="true"]{color:var(--accent)}
+.dd{position:relative}
+.menu{position:absolute;left:0;top:100%;background:var(--bg);border:1px solid var(--line);width:min(300px,90vw);max-height:70vh;overflow:auto;padding:6px 0;box-shadow:0 10px 30px #0002}
+.menu button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--fg);padding:9px 16px;font-size:14px;line-height:1.4}
+.menu button:hover{background:var(--card)}
+.menu small{display:block;color:var(--mute);font-size:12px}
+.pick{display:flex;gap:14px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.pick img{width:96px;height:96px;object-fit:cover;background:var(--card)}
+.pick img.wide{width:200px;height:auto;max-height:96px}
+.pick input{width:auto;flex:1}
+.cvrow{display:grid;grid-template-columns:minmax(0,180px) 1fr;gap:10px;margin-top:10px}
+.cvrow textarea{min-height:90px}
+@media(max-width:700px){.grid{gap:18px 10px}.card h3{font-size:13.5px;line-height:1.35;margin-top:8px}.card .sub{font-size:11.5px;line-height:1.4}.card .sub,.card .meta,.card .award{display:none}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <button class="lk" data-go="top">首頁 Home</button>
+  <button class="lk" data-go="aboutme">關於 About</button>
+  <span class="dd"><button class="lk" id="worksbtn" aria-expanded="false">作品 Works ▾</button><div class="menu" id="menu" hidden></div></span>
+</div></nav>
+<div class="wrap">
+  <header id="top">
+    <img class="banner" id="banner" alt="" hidden>
+    <div class="eyebrow" id="role"></div>
+    <p class="about" id="about"></p>
+    <div class="bar" id="adminbar" hidden>
+      <button class="btn solid" id="add">＋ 新增專案</button>
+      <button class="btn" id="editinfo">編輯簡介</button>
+      <button class="btn" id="editlook">橫幅與配色</button>
+      <button class="btn solid" id="export">匯出 content.json</button>
+      <button class="btn" id="discard">捨棄草稿</button>
+      <span class="note" id="dirty" style="align-self:center"></span>
+    </div>
+  </header>
+  <section class="profile" id="aboutme" hidden>
+    <img id="photo" alt="">
+    <div><h2 id="greet"></h2><div class="cv" id="cv"></div></div>
+  </section>
+  <div class="sec" id="works"><span class="eyebrow">Selected Works</span></div>
+  <main class="grid" id="grid"><div class="empty">載入中…</div></main>
+  <footer>© <span id="yr"></span> <span id="fname"></span></footer>
+</div>
+<div class="ov" id="ov" hidden><div class="wrap" id="ovc"></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const BLOBS={};const src=id=>BLOBS[id]||id;
+let db=null,assets=null,canEdit=false,projects=[],info={name:'賀昭恩',role:'Architectural Designer',about:'在這裡寫下你的簡介：設計理念、專長與經歷。'},draft=null;
+
+let theme={},ldraft=null;
+const DEF={bg:'#f4f2ee',fg:'#1b1b1a',accent:'#b3471d'};
+const okc=c=>/^#[0-9a-f]{6}$/i.test(c||'');
+function applyTheme(t){
+  const st=document.documentElement.style;
+  ['--bg','--fg','--accent','--mute','--line','--card','--on'].forEach(k=>st.removeProperty(k));
+  if(okc(t.bg)||okc(t.fg)){
+    const bg=okc(t.bg)?t.bg:DEF.bg,fg=okc(t.fg)?t.fg:DEF.fg;
+    st.setProperty('--bg',bg);st.setProperty('--fg',fg);st.setProperty('--on',bg);
+    st.setProperty('--mute','color-mix(in srgb,'+fg+' 62%,'+bg+')');
+    st.setProperty('--line','color-mix(in srgb,'+fg+' 18%,'+bg+')');
+    st.setProperty('--card','color-mix(in srgb,'+fg+' 8%,'+bg+')');
+  }
+  if(okc(t.accent))st.setProperty('--accent',t.accent);
+}
+function openLook(){
+  const cs=getComputedStyle(document.documentElement),hex=v=>{v=v.trim();return okc(v)?v:''};
+  ldraft={banner:info.banner||'',bg:theme.bg||hex(cs.getPropertyValue('--bg'))||DEF.bg,fg:theme.fg||hex(cs.getPropertyValue('--fg'))||DEF.fg,accent:theme.accent||hex(cs.getPropertyValue('--accent'))||DEF.accent};
+  drawLook();
+}
+function drawLook(msg){
+  const d=ldraft;
+  const sw=(k,l,n)=>'<div><label>'+l+'</label><div class="pick"><input type="color" id="l-'+k+'" value="'+esc(d[k])+'" style="width:64px;height:44px;padding:2px;flex:none"><input id="l-'+k+'-t" value="'+esc(d[k])+'" maxlength="7" style="max-width:120px"></div>'+(n?'<div class="note">'+n+'</div>':'')+'</div>';
+  show('<div class="top"><button class="btn" data-a="close">取消</button><span><button class="btn solid" data-a="savelook">儲存</button></span></div>'+
+  '<h2 class="serif" style="margin:0 0 8px">橫幅與配色</h2><div class="note" id="lmsg">'+esc(msg||'')+'</div>'+
+  '<label>網站橫幅</label>'+(d.banner?'<img src="'+src(d.banner)+'" alt="" style="max-width:100%;max-height:220px;display:block;margin:6px 0;background:var(--card)">':'<div class="note">目前沒有橫幅</div>')+
+  '<div class="pick"><input type="file" id="l-banner" accept="image/*">'+(d.banner?'<button class="btn" data-a="nobanner">移除橫幅</button>':'')+'</div>'+
+  '<div class="row" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">'+sw('bg','網站底色')+sw('fg','文字顏色')+sw('accent','強調色','獎項、選單滑過時的顏色')+'</div>'+
+  '<div style="margin-top:22px;padding:18px;border:1px solid var(--line);background:var(--bg);color:var(--fg)"><div class="serif" style="font-size:22px">預覽 Preview</div><div style="color:var(--mute);font-size:14px">次要文字會依底色與文字顏色自動調整</div><div class="award">2024 TRAA 學生論文獎 首獎</div></div>'+
+  '<p><button class="btn" data-a="looksreset">恢復預設配色</button></p>');
+}
+function setLook(k,v){if(!okc(v))return;ldraft[k]=v;const a=$('#l-'+k),b=$('#l-'+k+'-t');if(a&&a.value!==v)a.value=v;if(b&&b.value!==v)b.value=v;applyTheme(ldraft)}
+document.addEventListener('input',e=>{const m=/^l-(bg|fg|accent)(-t)?$/.exec(e.target.id||'');if(m&&ldraft)setLook(m[1],e.target.value.trim())});
+function renderInfo(){
+  $('#role').textContent=info.role;
+  $('#about').textContent=info.about;$('#fname').textContent=info.name;
+  $('#yr').textContent=new Date().getFullYear();document.title=info.name+' | 建築作品集';
+  if(info.banner){$('#banner').src=src(info.banner);$('#banner').hidden=false}else $('#banner').hidden=true;
+  const cv=info.cv||[];
+  $('#aboutme').hidden=!(info.photo||cv.length);
+  if(info.photo)$('#photo').src=src(info.photo);
+  $('#photo').hidden=!info.photo;
+  $('#greet').textContent=info.greet||'';
+  $('#cv').innerHTML=cv.map(s=>'<div><h4>'+esc(s.h)+'</h4><p>'+esc(s.t)+'</p></div>').join('');
+}
+function renderGrid(){
+  const g=$('#grid');
+  const L=cur();
+  g.innerHTML=L.map(p=>{
+    const c=p.thumb||(p.images||[])[0];
+    return '<article class="card" data-id="'+esc(p.id)+'"><div class="thumb">'+(c?'<img loading="lazy" src="'+src(c)+'" alt="'+esc(p.title)+'">':'<div class="ph">無圖片</div>')+'</div><h3>'+esc(p.title)+'</h3>'+(p.sub?'<div class="sub">'+esc(p.sub)+'</div>':'')+'<div class="meta">'+esc([p.year,p.cat].filter(Boolean).join(' · '))+'</div>'+(p.award?'<div class="award">'+esc(p.award)+'</div>':'')+'</article>';
+  }).join('');
+  $('#menu').innerHTML='<button data-go="works"><b>全部作品</b></button>'+L.map(p=>'<button data-open="'+esc(p.id)+'">'+esc(p.title)+(p.sub?'<small>'+esc(p.sub)+'</small>':'')+'</button>').join('');
+}
+function show(html){$('#ovc').innerHTML=html;$('#ov').hidden=false;$('#ov').scrollTop=0;document.body.style.overflow='hidden'}
+function hide(){$('#ov').hidden=true;document.body.style.overflow='';if(ldraft)applyTheme(theme);draft=null;idraft=null;ldraft=null}
+
+function openDetail(id){
+  const p=cur().find(x=>x.id===id);if(!p)return;
+  const vid=p.video&&/^https:\/\//.test(p.video)?'<p><a class="btn" href="'+esc(p.video)+'" target="_blank" rel="noopener">▶ 觀看影片</a></p>':'';
+  show('<div class="top"><button class="btn" data-a="close">← 返回</button>'+(canEdit&&db?'<span><button class="btn" data-a="edit" data-id="'+esc(id)+'">編輯</button></span>':'')+'</div>'+
+  '<div class="detail"><div class="meta">'+esc([p.year,p.cat,p.loc].filter(Boolean).join(' · '))+'</div><h2>'+esc(p.title)+'</h2>'+(p.sub?'<div class="sub">'+esc(p.sub)+'</div>':'')+(p.award?'<div class="award">'+esc(p.award)+'</div>':'')+(p.credits?'<div class="credits">'+esc(p.credits)+'</div>':'')+'<div class="desc">'+esc(p.desc)+'</div>'+vid+'<div class="gal">'+(p.images||[]).map(i=>'<img loading="lazy" src="'+src(i)+'" alt="">').join('')+'</div></div>');
+}
+function openEditor(id){
+  const p=id?cur().find(x=>x.id===id):null;
+  draft=p?{id:p.id,order:p.order,title:p.title||'',sub:p.sub||'',year:p.year||'',cat:p.cat||'',loc:p.loc||'',award:p.award||'',credits:p.credits||'',video:p.video||'',thumb:p.thumb||'',desc:p.desc||'',images:[...(p.images||[])]}:{title:'',sub:'',year:'',cat:'',loc:'',award:'',credits:'',video:'',thumb:'',desc:'',images:[]};
+  drawEditor();
+}
+function drawEditor(msg){
+  const d=draft;
+  show('<div class="top"><button class="btn" data-a="close">取消</button><span><button class="btn solid" data-a="save" id="save">儲存</button></span></div>'+
+  '<h2 class="serif" style="margin:0 0 8px">'+(d.id?'編輯專案':'新增專案')+'</h2>'+
+  '<label>專案名稱</label><input id="f-title" value="'+esc(d.title)+'">'+
+  '<label>副標題（選填）</label><input id="f-sub" value="'+esc(d.sub)+'">'+
+  '<div class="row"><div><label>年份</label><input id="f-year" value="'+esc(d.year)+'" placeholder="2026"></div><div><label>類型</label><input id="f-cat" value="'+esc(d.cat)+'" placeholder="住宅、都更、公共建築…"></div></div>'+
+  '<label>地點（選填）</label><input id="f-loc" value="'+esc(d.loc)+'">'+
+  '<label>獲獎（選填，一行一項）</label><textarea class="s" id="f-award">'+esc(d.award)+'</textarea>'+
+  '<label>專案資訊（指導老師、團隊等，選填）</label><textarea class="s" id="f-credits">'+esc(d.credits)+'</textarea>'+
+  '<label>影片連結（選填）</label><input id="f-video" value="'+esc(d.video)+'" placeholder="https://www.youtube.com/…">'+
+  '<label>文字說明</label><textarea id="f-desc">'+esc(d.desc)+'</textarea>'+
+  '<label>作品縮圖（Selected Works 卡片用）</label><div class="pick">'+(d.thumb?'<img src="'+src(d.thumb)+'" alt="">':'<span class="note">未設定，使用第一張圖片</span>')+'<input type="file" id="f-thumb" accept="image/*"></div>'+
+  '<label>圖片（作品內頁，依序顯示）</label><input type="file" id="f-files" accept="image/*" multiple>'+
+  '<div class="note" id="msg">'+esc(msg||'')+'</div>'+
+  '<div class="th">'+d.images.map((i,n)=>'<div><img src="'+src(i)+'" alt=""><span><button data-a="mv" data-n="'+n+'" data-d="-1">◀</button><button data-a="rm" data-n="'+n+'">✕</button><button data-a="mv" data-n="'+n+'" data-d="1">▶</button></span></div>').join('')+'</div>'+
+  (d.id?'<p style="margin-top:36px"><button class="btn danger" data-a="askdel">刪除此專案</button> <button class="btn danger" data-a="del" hidden id="suredel">確定刪除？</button></p>':''));
+}
+function keep(){
+  if(!draft||!$('#f-title'))return;
+  ['title','sub','year','cat','loc','award','credits','video','desc'].forEach(k=>draft[k]=$('#f-'+k).value);
+}
+async function upload(files){
+  if(!assets){drawEditor('目前無法上傳圖片。');return}
+  keep();let n=0;
+  for(const f of files){
+    n++;$('#msg').textContent='上傳中 '+n+' / '+files.length+'…';
+    try{const r=await assets.upload(f);draft.images.push(r.id)}catch(e){$('#msg').textContent='上傳失敗：'+(e&&e.message||e)}
+  }
+  keep();drawEditor();
+}
+async function up1(file,msgEl){
+  if(!assets){if(msgEl)msgEl.textContent='目前無法上傳圖片。';return null}
+  try{if(msgEl)msgEl.textContent='上傳中…';const r=await assets.upload(file);if(msgEl)msgEl.textContent='';return r.id}catch(e){if(msgEl)msgEl.textContent='上傳失敗：'+(e&&e.message||e);return null}
+}
+async function save(){
+  keep();
+  if(!draft.title.trim()){$('#msg').textContent='請輸入專案名稱。';return}
+  $('#save').disabled=true;
+  const ref=draft.id?db.collection('projects').doc(draft.id):db.collection('projects').doc();
+  const thumb=draft.thumb||'';
+  try{
+    await ref.set({title:draft.title.trim(),sub:draft.sub.trim(),year:draft.year.trim(),cat:draft.cat.trim(),loc:draft.loc.trim(),award:draft.award.trim(),credits:draft.credits.trim(),video:draft.video.trim(),thumb:thumb,desc:draft.desc,images:draft.images,order:draft.order||Date.now()});
+    hide();
+  }catch(e){$('#save').disabled=false;$('#msg').textContent='儲存失敗：'+(e&&e.message||e)}
+}
+let idraft=null;
+function openInfo(){
+  idraft=JSON.parse(JSON.stringify({name:info.name,role:info.role,about:info.about,greet:info.greet||'',photo:info.photo||'',banner:info.banner||'',cv:info.cv||[]}));
+  drawInfo();
+}
+function keepInfo(){
+  if(!idraft||!$('#i-name'))return;
+  idraft.name=$('#i-name').value;idraft.role=$('#i-role').value;idraft.about=$('#i-about').value;idraft.greet=$('#i-greet').value;
+  idraft.cv=idraft.cv.map((s,n)=>({h:$('[data-cvh="'+n+'"]').value,t:$('[data-cvt="'+n+'"]').value}));
+}
+function drawInfo(){
+  const d=idraft;
+  show('<div class="top"><button class="btn" data-a="close">取消</button><span><button class="btn solid" data-a="saveinfo">儲存</button></span></div>'+
+  '<h2 class="serif" style="margin:0 0 8px">編輯簡介與 Personal Info</h2><div class="note" id="imsg"></div>'+
+  '<label>姓名</label><input id="i-name" value="'+esc(d.name)+'"><label>職稱</label><input id="i-role" value="'+esc(d.role)+'"><label>開場文字</label><textarea class="s" id="i-about">'+esc(d.about)+'</textarea>'+
+  '<label>個人照片</label><div class="pick">'+(d.photo?'<img src="'+src(d.photo)+'" alt="">':'')+'<input type="file" id="i-photo" accept="image/*"></div>'+
+  '<label>個人區標題</label><input id="i-greet" value="'+esc(d.greet)+'">'+
+  '<label>Personal Info 區塊（左：標題，右：內容，一行一項）</label>'+
+  d.cv.map((s,n)=>'<div class="cvrow"><div><input data-cvh="'+n+'" value="'+esc(s.h)+'"><button class="btn" style="margin-top:8px" data-a="cvrm" data-n="'+n+'">移除</button></div><textarea data-cvt="'+n+'">'+esc(s.t)+'</textarea></div>').join('')+
+  '<p><button class="btn" data-a="cvadd">＋ 新增區塊</button></p>');
+}
+
+document.addEventListener('click',async e=>{
+  const go=e.target.closest('[data-go]'),op=e.target.closest('[data-open]'),wb=e.target.closest('#worksbtn');
+  const closeMenu=()=>{$('#menu').hidden=true;$('#worksbtn').setAttribute('aria-expanded','false')};
+  if(wb){const m=$('#menu');m.hidden=!m.hidden;wb.setAttribute('aria-expanded',String(!m.hidden));return}
+  if(!e.target.closest('.dd'))closeMenu();
+  if(op){closeMenu();openDetail(op.dataset.open);return}
+  if(go){closeMenu();if(!$('#ov').hidden)hide();
+    const el=document.getElementById(go.dataset.go);if(el){const y=go.dataset.go==='top'?0:el.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:'smooth'})}
+    return}
+  const card=e.target.closest('.card');
+  if(card&&$('#ov').hidden){openDetail(card.dataset.id);return}
+  const b=e.target.closest('[data-a]');
+  if(b){
+    const a=b.dataset.a;
+    if(a==='close')hide();
+    else if(a==='nobanner'){ldraft.banner='';drawLook()}
+    else if(a==='looksreset'){Object.assign(ldraft,DEF);applyTheme(ldraft);drawLook('已恢復預設，按儲存後生效。')}
+    else if(a==='savelook'){
+      const d=ldraft;
+      try{await db.doc('site/theme').set({bg:d.bg,fg:d.fg,accent:d.accent});await db.doc('site/info').set(Object.assign({},info,{banner:d.banner}));theme={bg:d.bg,fg:d.fg,accent:d.accent};ldraft=null;hide()}catch(err){$('#lmsg').textContent='儲存失敗：'+(err&&err.message||err)}
+    }
+    else if(a==='cvadd'){keepInfo();idraft.cv.push({h:'',t:''});drawInfo()}
+    else if(a==='cvrm'){keepInfo();idraft.cv.splice(+b.dataset.n,1);drawInfo()}
+    else if(a==='askdel'){$('#suredel').hidden=false;b.hidden=true}
+    else if(a==='edit')openEditor(b.dataset.id);
+    else if(a==='save')save();
+    else if(a==='rm'){keep();draft.images.splice(+b.dataset.n,1);drawEditor()}
+    else if(a==='mv'){keep();const n=+b.dataset.n,m=n+(+b.dataset.d);if(m>=0&&m<draft.images.length){[draft.images[n],draft.images[m]]=[draft.images[m],draft.images[n]]}drawEditor()}
+    else if(a==='del'){try{if(BUILT.has(draft.id))await db.collection('projects').doc(draft.id).set({deleted:true});else await db.collection('projects').doc(draft.id).delete();hide()}catch(err){$('#msg').textContent='刪除失敗'}}
+    else if(a==='saveinfo'){
+      keepInfo();const d=idraft;d.name=d.name.trim()||info.name;d.cv=d.cv.filter(s=>s.h.trim()||s.t.trim());
+      try{await db.doc('site/info').set(d);hide()}catch(err){$('#imsg').textContent='儲存失敗：'+(err&&err.message||err)}
+    }
+    return;
+  }
+  if(e.target.id==='add')openEditor();
+  if(e.target.id==='editinfo')openInfo();
+  if(e.target.id==='editlook')openLook();
+  if(e.target.id==='export')exportJson();
+  if(e.target.id==='discard'){if(e.target.dataset.sure){store={projects:{},info:null,theme:null};saveDraft();emit();e.target.textContent='捨棄草稿';delete e.target.dataset.sure}else{e.target.dataset.sure='1';e.target.textContent='確定捨棄？'}}
+});
+document.addEventListener('change',async e=>{
+  const t=e.target,f=t.files&&t.files[0];if(!f)return;
+  if(t.id==='f-files')upload([...t.files]);
+  else if(t.id==='f-thumb'){keep();const id=await up1(f,$('#msg'));if(id){draft.thumb=id;drawEditor()}}
+  else if(t.id==='l-banner'){const id=await up1(f,$('#lmsg'));if(id){ldraft.banner=id;drawLook()}}
+  else if(t.id==='i-photo'||t.id==='i-banner'){keepInfo();const id=await up1(f,$('#imsg'));if(id){idraft[t.id==='i-photo'?'photo':'banner']=id;drawInfo()}}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)hide()});
+
+let INFO={},SAMPLES=[],CONTENT=null;
+let BUILT=new Set();
+const cur=()=>{
+  const ov={};projects.forEach(p=>ov[p.id]=p);
+  const L=SAMPLES.map(p=>ov[p.id]?Object.assign({},p,ov[p.id]):p).concat(projects.filter(p=>!BUILT.has(p.id)));
+  return L.filter(p=>!p.deleted).sort((a,b)=>(b.order||0)-(a.order||0));
+};
+renderInfo();
+const LS='chaoen-portfolio-draft-v1';
+let store={projects:{},info:null,theme:null};
+function loadDraft(){try{const x=JSON.parse(localStorage.getItem(LS)||'null');if(x&&x.projects)store=x}catch(e){}}
+function dirty(){return Object.keys(store.projects).length||store.info||store.theme}
+function saveDraft(){try{localStorage.setItem(LS,JSON.stringify(store))}catch(e){}}
+function emit(){
+  projects=Object.keys(store.projects).map(id=>Object.assign({id},store.projects[id]));
+  info=Object.assign({},INFO,store.info||{});renderInfo();
+  theme=store.theme||CONTENT.theme||{};applyTheme(theme);renderGrid();
+  if(canEdit)$('#dirty').textContent=dirty()?'● 有尚未匯出的修改':'目前沒有修改';
+}
+const localDb={
+  collection(){return{doc(id){id=id||('n'+Date.now().toString(36));return{id,
+    async set(d){store.projects[id]=d;saveDraft();emit()},
+    async delete(){delete store.projects[id];saveDraft();emit()}}}}},
+  doc(path){return{async set(d){if(path==='site/info')store.info=d;else if(path==='site/theme')store.theme=d;saveDraft();emit()}}}
+};
+const localAssets={async upload(f){const name='images/'+f.name.replace(/[^\w.\-]+/g,'_');BLOBS[name]=URL.createObjectURL(f);return{id:name}}};
+function exportJson(){
+  const strip=p=>{const o=Object.assign({},p);delete o.deleted;return o};
+  const out={_說明:CONTENT._說明,info:Object.assign({},info),theme:theme,projects:cur().map(strip)};
+  const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='content.json';document.body.appendChild(a);a.click();a.remove();
+  const imgs=new Set();cur().forEach(p=>{(p.images||[]).forEach(i=>imgs.add(i));if(p.thumb)imgs.add(p.thumb)});['banner','photo'].forEach(k=>info[k]&&imgs.add(info[k]));
+  const fresh=[...imgs].filter(i=>BLOBS[i]);
+  show('<div class="top"><button class="btn" data-a="close">完成</button></div><h2 class="serif" style="margin:0 0 8px">已下載 content.json</h2>'+
+  '<div class="desc">下一步：到 GitHub 專案頁面，用下載的 content.json 取代原本的檔案（Add file → Upload files），按 Commit changes。約 1 分鐘後網站與 App 會自動更新。'+
+  (fresh.length?'\n\n這次也新增了圖片，請把以下檔案一起上傳到 images 資料夾（檔名需相同）：\n'+fresh.map(x=>'・'+x.replace('images/','')).join('\n'):'')+
+  '\n\n上傳完成後，可按「捨棄草稿」清掉這台裝置上的暫存修改。</div>');
+}
+(async()=>{
+  try{CONTENT=await (await fetch('content.json',{cache:'no-cache'})).json()}
+  catch(e){$('#grid').innerHTML='<div class="empty">內容載入失敗，請檢查網路後重新整理。</div>';return}
+  INFO=CONTENT.info||{};SAMPLES=CONTENT.projects||[];BUILT=new Set(SAMPLES.map(p=>p.id));
+  canEdit=location.hash==='#admin';
+  if(canEdit){db=localDb;assets=localAssets;loadDraft();$('#adminbar').hidden=false}
+  emit();
+})();
+addEventListener('hashchange',()=>location.reload());
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
