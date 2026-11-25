@@ -90,6 +90,17 @@ nav .lk:hover,nav .lk[aria-expanded="true"]{color:var(--accent)}
 .cvrow{display:grid;grid-template-columns:minmax(0,180px) 1fr;gap:10px;margin-top:10px}
 .cvrow textarea{min-height:90px}
 @media(max-width:700px){.grid{gap:18px 10px}.card h3{font-size:13.5px;line-height:1.35;margin-top:8px}.card .sub{font-size:11.5px;line-height:1.4}.card .sub,.card .meta,.card .award{display:none}}
+#crop{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+#crop .box{background:var(--bg);color:var(--fg);width:min(760px,100%);max-height:100%;overflow:auto;padding:18px;border-radius:4px}
+#crop .stage{position:relative;margin:12px auto;background:repeating-conic-gradient(#8882 0 25%,transparent 0 50%) 0 0/16px 16px;touch-action:none;cursor:grab;overflow:hidden}
+#crop .stage:active{cursor:grabbing}
+#crop canvas{display:block;width:100%;height:100%}
+#crop .ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px}
+#crop .ctl select,#crop .ctl input[type=range]{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:8px;border-radius:2px;min-height:40px}
+#crop .ctl input[type=range]{flex:1;min-width:140px;padding:0;border:0}
+#crop .ratios{display:flex;flex-wrap:wrap;gap:6px}
+#crop .ratios button{border:1px solid var(--line);background:transparent;color:var(--fg);padding:7px 12px;font-size:13px;border-radius:2px;min-height:36px}
+#crop .ratios button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -221,11 +232,80 @@ function keep(){
   if(!draft||!$('#f-title'))return;
   ['title','sub','year','cat','loc','award','credits','video','desc'].forEach(k=>draft[k]=$('#f-'+k).value);
 }
+// ---- 圖片裁切與縮放 ----
+const RATIOS=[['原比例',0],['1:1',1],['4:3',4/3],['3:4',3/4],['3:2',3/2],['16:9',16/9],['A3 橫',420/297],['A3 直',297/420]];
+function cropImage(file,opt){
+  opt=opt||{};
+  return new Promise(resolve=>{
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onerror=()=>{URL.revokeObjectURL(url);resolve(file)};
+    img.onload=()=>{
+      const iw=img.naturalWidth,ih=img.naturalHeight;
+      let ratio=opt.ratio===undefined?0:opt.ratio,z=1,ox=0,oy=0,fw=0,fh=0,s=1,smin=1,maxEdge=opt.max||2400;
+      const el=document.createElement('div');el.id='crop';
+      el.innerHTML='<div class="box"><div class="serif" style="font-size:20px">裁切與縮放圖片</div>'+
+        '<div class="note">'+esc(file.name)+'・原尺寸 '+iw+' × '+ih+' px'+(opt.count?'・第 '+opt.count+' 張':'')+'</div>'+
+        '<div class="ratios" style="margin-top:12px">'+RATIOS.map((r,i)=>'<button data-r="'+i+'">'+r[0]+'</button>').join('')+'</div>'+
+        '<div class="stage"><canvas></canvas></div>'+
+        '<div class="ctl"><span>縮放</span><input type="range" min="1" max="5" step="0.01" value="1" id="cz">'+
+        '<label style="margin:0;color:inherit;font-size:14px">輸出長邊 <select id="cm"><option value="1200">1200 px</option><option value="1600">1600 px</option><option value="2400">2400 px</option><option value="0">不縮小</option></select></label></div>'+
+        '<div class="note" id="cinfo" style="margin-top:8px"></div>'+
+        '<div class="ctl" style="margin-top:14px;justify-content:space-between"><button class="btn" data-c="cancel">取消</button><span style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-c="orig">使用原圖</button><button class="btn solid" data-c="ok">確定</button></span></div></div>';
+      document.body.appendChild(el);
+      const stage=el.querySelector('.stage'),cv=el.querySelector('canvas'),ctx=cv.getContext('2d');
+      const cm=el.querySelector('#cm');cm.value=String(maxEdge);if(!cm.value)cm.value='2400';
+      const out=()=>{const sw=fw/s,sh=fh/s,me=+cm.value,k=me?Math.min(1,me/Math.max(sw,sh)):1;return[Math.round(sw),Math.round(sh),Math.max(1,Math.round(sw*k)),Math.max(1,Math.round(sh*k))]};
+      function clamp(){ox=Math.min(0,Math.max(fw-iw*s,ox));oy=Math.min(0,Math.max(fh-ih*s,oy))}
+      function draw(){
+        const d=devicePixelRatio||1;cv.width=Math.round(fw*d);cv.height=Math.round(fh*d);
+        ctx.setTransform(d,0,0,d,0,0);ctx.imageSmoothingQuality='high';ctx.clearRect(0,0,fw,fh);ctx.drawImage(img,ox,oy,iw*s,ih*s);
+        ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=1;ctx.beginPath();
+        for(let i=1;i<3;i++){ctx.moveTo(fw*i/3,0);ctx.lineTo(fw*i/3,fh);ctx.moveTo(0,fh*i/3);ctx.lineTo(fw,fh*i/3)}ctx.stroke();
+        const o=out();el.querySelector('#cinfo').textContent='裁切範圍 '+o[0]+' × '+o[1]+' px → 輸出 '+o[2]+' × '+o[3]+' px'+(o[0]<800||o[1]<800?'（原圖解析度偏低，放大後可能模糊）':'');
+      }
+      function layout(keep){
+        const r=ratio||iw/ih,maxW=Math.min(el.querySelector('.box').clientWidth-36,720),maxH=Math.max(220,innerHeight*0.52);
+        let cx=keep?(fw/2-ox)/s:iw/2,cy=keep?(fh/2-oy)/s:ih/2;
+        fw=maxW;fh=fw/r;if(fh>maxH){fh=maxH;fw=fh*r}
+        stage.style.width=fw+'px';stage.style.height=fh+'px';
+        smin=Math.max(fw/iw,fh/ih);s=smin*z;ox=fw/2-cx*s;oy=fh/2-cy*s;clamp();draw();
+        el.querySelectorAll('[data-r]').forEach(b=>b.classList.toggle('on',RATIOS[+b.dataset.r][1]===ratio));
+      }
+      function zoom(nz){nz=Math.min(5,Math.max(1,nz));const cx=(fw/2-ox)/s,cy=(fh/2-oy)/s;z=nz;s=smin*z;ox=fw/2-cx*s;oy=fh/2-cy*s;clamp();el.querySelector('#cz').value=z;draw()}
+      let drag=null;
+      stage.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,ox,oy};stage.setPointerCapture(e.pointerId)});
+      stage.addEventListener('pointermove',e=>{if(!drag)return;ox=drag.ox+e.clientX-drag.x;oy=drag.oy+e.clientY-drag.y;clamp();draw()});
+      stage.addEventListener('pointerup',()=>drag=null);stage.addEventListener('pointercancel',()=>drag=null);
+      stage.addEventListener('wheel',e=>{e.preventDefault();zoom(z*(e.deltaY<0?1.08:1/1.08))},{passive:false});
+      el.querySelector('#cz').addEventListener('input',e=>zoom(+e.target.value));
+      cm.addEventListener('change',draw);
+      const onResize=()=>layout(true);addEventListener('resize',onResize);
+      function done(v){removeEventListener('resize',onResize);el.remove();URL.revokeObjectURL(url);resolve(v)}
+      el.addEventListener('click',e=>{
+        const rb=e.target.closest('[data-r]');if(rb){ratio=RATIOS[+rb.dataset.r][1];z=1;el.querySelector('#cz').value=1;layout(false);return}
+        const c=e.target.closest('[data-c]');if(!c)return;
+        if(c.dataset.c==='cancel')done(null);
+        else if(c.dataset.c==='orig')done(file);
+        else{
+          const o=out(),oc=document.createElement('canvas');oc.width=o[2];oc.height=o[3];
+          const g=oc.getContext('2d');g.imageSmoothingQuality='high';
+          const png=/png$/i.test(file.type);if(!png){g.fillStyle='#fff';g.fillRect(0,0,o[2],o[3])}
+          g.drawImage(img,-ox/s,-oy/s,fw/s,fh/s,0,0,o[2],o[3]);
+          oc.toBlob(b=>{if(!b){done(file);return}
+            const base=file.name.replace(/\.[^.]+$/,'');done(new File([b],base+(png?'.png':'.jpg'),{type:b.type}))},png?'image/png':'image/jpeg',0.9);
+        }
+      });
+      layout(false);
+    };
+    img.src=url;
+  });
+}
 async function upload(files){
   if(!assets){drawEditor('目前無法上傳圖片。');return}
   keep();let n=0;
-  for(const f of files){
-    n++;$('#msg').textContent='上傳中 '+n+' / '+files.length+'…';
+  for(let f of files){
+    n++;f=await cropImage(f,{ratio:0,max:2400,count:files.length>1?n+' / '+files.length:''});if(!f)continue;
+    $('#msg').textContent='上傳中 '+n+' / '+files.length+'…';
     try{const r=await assets.upload(f);draft.images.push(r.id)}catch(e){$('#msg').textContent='上傳失敗：'+(e&&e.message||e)}
   }
   keep();drawEditor();
@@ -315,10 +395,10 @@ document.addEventListener('click',async e=>{
 });
 document.addEventListener('change',async e=>{
   const t=e.target,f=t.files&&t.files[0];if(!f)return;
-  if(t.id==='f-files')upload([...t.files]);
-  else if(t.id==='f-thumb'){keep();const id=await up1(f,$('#msg'));if(id){draft.thumb=id;drawEditor()}}
-  else if(t.id==='l-banner'){const id=await up1(f,$('#lmsg'));if(id){ldraft.banner=id;drawLook()}}
-  else if(t.id==='i-photo'||t.id==='i-banner'){keepInfo();const id=await up1(f,$('#imsg'));if(id){idraft[t.id==='i-photo'?'photo':'banner']=id;drawInfo()}}
+  if(t.id==='f-files'){const fs=[...t.files];t.value='';upload(fs)}
+  else if(t.id==='f-thumb'){keep();const c=await cropImage(f,{ratio:1,max:1200});t.value='';if(!c)return;const id=await up1(c,$('#msg'));if(id){draft.thumb=id;drawEditor()}}
+  else if(t.id==='l-banner'){const c=await cropImage(f,{ratio:0,max:2400});t.value='';if(!c)return;const id=await up1(c,$('#lmsg'));if(id){ldraft.banner=id;drawLook()}}
+  else if(t.id==='i-photo'||t.id==='i-banner'){keepInfo();const c=await cropImage(f,{ratio:t.id==='i-photo'?1:0,max:t.id==='i-photo'?1200:2400});t.value='';if(!c)return;const id=await up1(c,$('#imsg'));if(id){idraft[t.id==='i-photo'?'photo':'banner']=id;drawInfo()}}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)hide()});
 
